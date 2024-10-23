@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% comment %} <h2>Track Your Progress</h2> {% endcomment %}
+    <h2 style="text-align:center;">Student Progress</h2>
+
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>STUDENT NAME</th>
+            <th>TITLE</th>
+            <th>DESCRIPTION</th>
+            <th>CREATED AT</th>
+            <th>DEADLINE</th>
+            <th>STATUS</th>
+        </thead>
+        <tbody>
+            {% if goals %}
+            {% for goal in goals %}
+            <tr>
+                <td>{{goal.id}}</td>
+                <td>{{goal.created_by.first_name}}</td>
+                <td>{{goal.title}}</td>
+                <td>{{goal.description}}</td>
+                <td>{{goal.created_at}}</td>
+                <td>{{goal.deadline}}</td>
+                {% if goal.status %}
+                <td style="color: green">Completed</td>
+                {% else %}
+                <td style="color: red">Inprogress</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td><i>No goals yet!</i></td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

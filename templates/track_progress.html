@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% comment %} <h2>Track Your Progress</h2> {% endcomment %}
+    <h2 style="text-align:center;">Track Your Progress</h2>
+
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>TITLE</th>
+            <th>DESCRIPTION</th>
+            <th>CREATED AT</th>
+            <th>DEADLINE</th>
+            <th>STATUS</th>
+            <th>ACTION</th>
+        </thead>
+        <tbody>
+            {% if goals %}
+            {% for goal in goals %}
+            <tr>
+                <td>{{goal.id}}</td>
+                <td>{{goal.title}}</td>
+                <td>{{goal.description}}</td>
+                <td>{{goal.created_at}}</td>
+                <td>{{goal.deadline}}</td>
+                {% if goal.status %}
+                <td style="color: green">Completed</td>
+                {% else %}
+                <td style="color: red">Inprogress</td>
+                {% endif %}
+                <td>
+                    <a href="/delete/{{goal.id}}" style="color: #fff; background-color: red; padding: 10px; text-decoration: none; border-radius: 5px;">Delete</a>
+                    <a href="/update-goal/{{goal.id}}" style="color: #fff; background-color: rgb(27, 140, 232); padding: 10px; text-decoration: none; border-radius: 5px;">Edit</a>
+                </td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td><i>No goals yet!</i></td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="home">
+        <h1>Welcome to the Students' Accountability App</h1>
+        <p>Set and track your academic goals effectively. Monitor your progress and achieve success!</p>
+
+        <div class="actions">
+            <a href="{% url 'create_goal' %}" class="btn">Create New Goal</a>
+            <a href="{% url 'track_progress' %}" class="btn">Track Your Progress</a>
+        </div>
+
+        <div class="info-section">
+            <h2>Why Use This App?</h2>
+            <p>This app helps students set goals and provides them with the tools to track their progress in real-time. Teachers and administrators can also monitor the students' progress, making accountability a key part of your academic journey.</p>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,193 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #eef1f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigation Bar */
+header {
+    background-color: #3498db;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 15px 0;
+}
+
+nav{
+    background-color: #3498db;
+    padding: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+nav ul li a:hover {
+    color: #f0f0f0;
+}
+
+/* Main Content */
+main {
+    padding: 40px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 40px;
+    color: #555;
+}
+
+.home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+
+
+.goal, .login, .register{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+
+.goal form, .login form, .register form{
+    width: 100%;
+}
+
+.login a, .register a{
+    text-decoration: none;
+    color: #3498db;
+    font-style: italic;
+}
+
+.error{
+    color: red;
+}
+
+.success{
+    color: green;
+}
+
+/* Forms */
+form {
+    background: linear-gradient(145deg, #ffffff, #e0e0e0);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 6px 6px 14px rgba(0, 0, 0, 0.2), -6px -6px 14px rgba(255, 255, 255, 0.5);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+form label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+form input[type="text"], form input[type="email"], form input[type="password"], form textarea, form input[type='date'] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+form button {
+    width: 100%;
+    padding: 15px;
+    background-color: #3498db;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2), -4px -4px 12px rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #2980b9;
+    transform: translateY(-5px);
+}
+
+/* Buttons */
+.actions .btn, form input[type="submit"] {
+    display: inline-block;
+    padding: 15px 30px;
+    background: linear-gradient(145deg, #6ac1ff, #3498db);
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 10px;
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2), -4px -4px 12px rgba(255, 255, 255, 0.5);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.actions .btn:hover, form input[type="submit"]:hover {
+    transform: translateY(-5px);
+    box-shadow: 6px 6px 14px rgba(0, 0, 0, 0.3), -6px -6px 14px rgba(255, 255, 255, 0.6);
+}
+
+/* Info Section */
+.info-section {
+    margin-top: 40px;
+    padding: 20px;
+    background: linear-gradient(145deg, #ffffff, #e0e0e0);
+    border-radius: 15px;
+    box-shadow: 6px 6px 14px rgba(0, 0, 0, 0.2), -6px -6px 14px rgba(255, 255, 255, 0.5);
+}
+
+.info-section h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.info-section p {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #3498db;
+    color: white;
+    margin-top: 50px;
+}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="login">
+        <form method="POST">
+            <h2>Login</h2><br><br>
+            {% csrf_token %}
+            {% if messages %}
+            {% for message in messages %}
+            {% if message.tags == 'error' %}
+            <span class="error">{{message}}</span><br><br>
+            {% else %}
+            <span class="success">{{message}}</span><br><br>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required><br><br>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required><br><br>
+            
+            <button type="submit">Login</button> <br><br>
+            <span>Don't have an account &nbsp; <a href="/register">Register</a></span>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="goal">
+        {% if update %}
+        <form method="POST">
+            <h2>Update New Goal</h2><br><br>
+            {% csrf_token %}
+            {% if messages %}
+            {% for message in messages %}
+            {% if message.tags == 'error' %}
+            <span class="error">{{message}}</span><br><br>
+            {% else %}
+            <span class="success">{{message}}</span><br><br>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea><br><br>
+            
+            <button>Update Goal</button>
+        </form>
+        {% else %}
+        <form method="POST">
+            <h2>Create New Goal</h2><br><br>
+            {% csrf_token %}
+            {% if messages %}
+            {% for message in messages %}
+            {% if message.tags == 'error' %}
+            <span class="error">{{message}}</span><br><br>
+            {% else %}
+            <span class="success">{{message}}</span><br><br>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            <label for="title">Goal Title:</label>
+            <input type="text" id="title" name="title" required><br><br>
+            
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea><br><br>
+            
+            <label for="deadline">Deadline:</label>
+            <input type="date" id="deadline" name="deadline" required><br><br>
+            
+            <button>Create Goal</button>
+        </form>
+        {% endif %}
+    </div>
+{% endblock %}
