@@ -4,6 +4,15 @@ from django.contrib.auth import get_user_model
 # User model (students, teachers, and admins)
 User = get_user_model()
 
+
+# class Course(models.Model):
+#     course = models.CharField(blank=True, max_length=225)
+#     title = models.CharField(blank=True, max_length=225)
+
+class Conversation(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    conva = models.TextField()
+
 class Goal(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()

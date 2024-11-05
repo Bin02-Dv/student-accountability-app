@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="home">
+        <h2>Conversations</h2>
+        <div class="info-section conva">
+            <div class="chat">
+                
+            </div>
+
+            <div>
+                <form method="post" id="form">
+                    {% csrf_token %}
+                    <input type="text" name="message" id="message">
+                    <button>POST</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function fetchConversationData() {
+            $.ajax({
+                url: '/fetch_conversation_data/',  // URL to your Django view
+                method: 'GET',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        const conversationData = response.conversation;
+                        
+                        // Clear existing conversation content
+                        $('.chat').empty();
+        
+                        // Iterate through the fetched conversation data and update the UI
+                        conversationData.forEach(conversation => {
+                            const username = conversation.username;
+                            const conva = conversation.conva;
+                            const messageHtml = 
+                            `<div>
+                                <b><i>${username}</i></b> <br> <br>
+                                <span>${conva}</span><br><br>
+                             </div>`;
+                            
+                            $('.chat').append(messageHtml);
+                        });
+                        
+                        // Scroll to the bottom of the conversation list
+                        const con = document.querySelector('.conva');
+                        if (con) {
+                            con.scrollTo({
+                                top: con.scrollHeight,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error fetching conversation data: ", error);
+                }
+            });
+        }
+        
+        // Fetch data every 5 seconds for real-time updates
+        setInterval(fetchConversationData, 5000);
+        
+        // Initial fetch on page load
+        fetchConversationData();        
+    </script>
+
+    <script>
+        // ajax
+        $(document).on('submit', '#form', function (e){
+            e.preventDefault();
+            var chat_msg = $("#message")
+            var formData = new FormData(this);
+
+            $.ajax({
+                type: 'POST',
+                url: '/conva/',
+                data: formData,
+                processData: false, 
+                contentType: false,
+                success: function (response){
+                    var success = response['success'];
+                    if(success){
+                        chat_msg.val('');
+                        // NORMAL ALERT warning, error, success
+                        red.removeClass("block");
+                        green.html('');
+                        green.addClass("block");
+                        green.append(response['message']);
+                    }else{
+                        green.removeClass("block");
+                        red.html('');
+                        red.addClass("block");
+                        red.append(response['message']);
+                    }
+
+                }
+            });
+        });
+    </script>
+{% endblock %}

@@ -4,6 +4,8 @@ from . import views
 urlpatterns = [
     path('', views.home, name='home'),
     path('login/', views.login, name='login'),
+    path('conva/', views.conva, name='conva'),
+    path('fetch_conversation_data/', views.fetch_conversation_data, name='fetch_conversation_data'),
     path('logout/', views.logout, name='logout'),
     path('register/', views.register, name='register'),
     path('create-goal/', views.create_goal, name='create_goal'),

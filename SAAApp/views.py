@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
-from .models import Goal, Progress
+from .models import Goal, Progress, Conversation
 from django.contrib.auth.models import User, auth
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.http import JsonResponse
+from django.core import serializers
 
 def logout(request):
     auth.logout(request)
@@ -11,6 +13,41 @@ def logout(request):
 def home(request):
     user = request.user
     return render(request, 'home.html', {'user': user})
+
+@login_required(login_url='login')
+def conva(request):
+    user = request.user
+    if request.method == 'POST':
+        msg = request.POST.get("message")
+        
+        if msg is None:
+            return JsonResponse({'success': False})
+        else:
+            new_conva = Conversation.objects.create(user=user, conva=msg)
+            new_conva.save()
+            return JsonResponse({'success': True})
+    return render(request, 'conva.html', {'user': user})
+
+@login_required(login_url='login')
+def fetch_conversation_data(request):
+    # Annotate conversations with the username
+    conversation = Conversation.objects.select_related('user').all()
+    
+    # Create a list of dictionaries with the relevant data
+    conversation_data = [
+        {
+            'id': conv.id,
+            'username': conv.user.username,  # Retrieve the username directly
+            'conva': conv.conva,             # The conversation content
+        }
+        for conv in conversation
+    ]
+    
+    # Return a JSON response
+    return JsonResponse({
+        'conversation': conversation_data,
+        'status': 'success'
+    })
 
 def login(request):
     if request.method == 'POST':
